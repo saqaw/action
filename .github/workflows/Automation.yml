@@ -19,11 +19,11 @@ jobs:
         run: docker build -t actiontest .
         
       - name: Run docker image and launch bash shell
-        run: docker run actiontest:latest python -m pytest . --html=report.html --self-contained-html
+        run: docker run -v "$(pwd):/tests" actiontest:latest python -m pytest . --html=report.html --self-contained-html
 
       - name: Upload raw report artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pytest-html-report
-          path: /tests/report.html
+          path: report.html
