@@ -19,7 +19,7 @@ jobs:
         run: docker build -t actiontest .
         
       - name: Run docker image and launch bash shell
-        run: docker run actiontest:latest sh
+        run: docker run actiontest:latest python -m pytest .
 
       - name: Run tests
         run: pytest .
