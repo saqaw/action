@@ -1,0 +1,25 @@
+name: Build docker image and run tests
+
+# Define the events that trigger this workflow
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Enables manual triggering
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build docker container image
+        run: docker build -t actiontest .
+        
+      - name: Run docker image and launch bash shell
+        run: docker run actiontest:latest bash
+
+      - name: Run tests
+        run: pytest .
