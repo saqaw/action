@@ -12,6 +12,3 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # 5. Copy the rest of the application source code
 COPY . .
-
-# 6. Run all tests
-CMD ["pytest", "."]
