@@ -19,7 +19,10 @@ jobs:
         run: docker build -t actiontest .
         
       - name: Run docker image and launch shell
-        run: docker run -d -v "$(pwd):/tests" --name testcontainer actiontest:latest
+        run: docker run -d  --name testcontainer -v "$(pwd):/tests"  actiontest:latest
+
+      - name: check if container is running
+        run: docker ps -a
 
       - name: Run tests
         run: docker exec testcontainer python -m pytest . --html=report.html --self-contained-html
