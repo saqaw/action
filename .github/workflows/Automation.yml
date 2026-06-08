@@ -19,7 +19,7 @@ jobs:
         run: docker build -t actiontest .
         
       - name: Run docker image and launch shell
-        run: docker run -d  --name testcontainer -v "$(pwd):/tests"  actiontest:latest
+        run: docker run -d  --name testcontainer -v "$(pwd):/tests"  actiontest:latest tail -f /dev/null
 
       - name: check if container is running
         run: |
