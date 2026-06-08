@@ -22,7 +22,9 @@ jobs:
         run: docker run -d  --name testcontainer -v "$(pwd):/tests"  actiontest:latest
 
       - name: check if container is running
-        run: docker ps -a
+        run: |
+          sleep 5
+          docker ps -a
 
       - name: Run tests
         run: docker exec testcontainer python -m pytest . --html=report.html --self-contained-html
